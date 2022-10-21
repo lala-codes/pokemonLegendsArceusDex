@@ -1,5 +1,5 @@
 {
-  "name": ".",
+  "name": "pkmn-legends",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -9,12 +9,19 @@
   },
   "private": true,
   "dependencies": {
-    "@emotion/react": "11.10.4",
-    "@emotion/styled": "11.10.4",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.10",
+    "@reduxjs/toolkit": "^1.8.6",
     "core-js": "^3.6.5",
+    "lodash": "^4.17.21",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-router-dom": "6.4.1",
+    "redux": "^4.2.0",
     "regenerator-runtime": "0.13.7",
+    "sharp": "^0.31.1",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
@@ -30,9 +37,11 @@
     "@nrwl/workspace": "15.0.0",
     "@testing-library/react": "13.4.0",
     "@types/jest": "28.1.1",
+    "@types/lodash": "^4.14.186",
     "@types/node": "16.11.7",
     "@types/react": "18.0.20",
     "@types/react-dom": "18.0.6",
+    "@types/react-router-dom": "5.3.3",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "babel-jest": "28.1.1",
