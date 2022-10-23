@@ -5,7 +5,6 @@ import ResearchAppBar from '../components/ResearchAppBar';
 import usePreferredTheme from './usePreferredTheme';
 import ResearchList from '../components/ResearchList';
 import ResearchTaskCard from '../components/ResearchTaskCard';
-import { Grid } from '@mui/material';
 
 export function App() {
   const theme = usePreferredTheme();
