@@ -1,10 +1,18 @@
-export interface PokemonResearchTask {
+export type Dex = number;
+
+interface WithDex {
+  dex: Dex;
+}
+
+export interface Task {
   task: string;
   requirements: number[];
 }
 
-export interface Pokemon {
-  dex: number;
+export interface Monster extends WithDex {
   name: string;
-  researchTasks: PokemonResearchTask[];
+}
+
+export interface ResearchTasks extends WithDex {
+  researchTasks: Task[];
 }

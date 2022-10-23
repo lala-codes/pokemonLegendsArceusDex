@@ -3,7 +3,7 @@ import Rating, { IconContainerProps } from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import { useCallback } from 'react';
 import { capitalize } from '@mui/material';
-import { PokemonResearchTask } from '../types';
+import { Task } from '../types';
 
 function ResearchTaskItem({ value, children, ...props }: IconContainerProps) {
   return (
@@ -12,8 +12,7 @@ function ResearchTaskItem({ value, children, ...props }: IconContainerProps) {
       sx={{
         width: 50,
         height: 30,
-        // background: 'currentColor',
-        borderRadius: 2,
+        borderRadius: 1,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -25,7 +24,7 @@ function ResearchTaskItem({ value, children, ...props }: IconContainerProps) {
   );
 }
 
-export interface ResearchTaskProps extends PokemonResearchTask {
+export interface ResearchTaskProps extends Task {
   researchValue: number;
   onChange?: (value: number) => void;
 }
@@ -50,8 +49,17 @@ export default function ResearchTask({
         value={values.indexOf(researchValue) + 1}
         max={values.length}
         sx={{
-          '& .MuiRating-icon': { color: 'common.white' },
-          '& .MuiRating-iconFilled': { color: 'primary.main' },
+          marginLeft: -1,
+          marginRight: -1,
+          '& .MuiRating-icon': {
+            margin: 1,
+            backgroundColor: 'background.default',
+            color: 'primary.contrastText',
+          },
+          '& .MuiRating-iconFilled': {
+            backgroundColor: 'success.main',
+            color: 'primary.contrastText',
+          },
         }}
         IconContainerComponent={ConnectedResearchTaskItem}
         onChange={(_e, value) => onChange((value && values[value - 1]) || 0)}

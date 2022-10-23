@@ -1,6 +1,8 @@
-import { Pokemon } from '../types';
+import { Monster, ResearchTasks } from './types';
 
-const data: Pokemon[] = [
+type MonsterResearch = Monster & ResearchTasks;
+
+const data: MonsterResearch[] = [
   {
     dex: 1,
     name: 'Rowlet',

@@ -8,7 +8,11 @@
     "../../node_modules/@nrwl/react/typings/cssmodule.d.ts",
     "../../node_modules/@nrwl/react/typings/image.d.ts",
     "./src/components/ResearchTask.tsx",
-    "./src/app/Card.tsx"
+    "./src/components/useTaskProgress.tsx",
+    "./src/components/ResearchListItem.tsx",
+    "./src/components/ResearchList.tsx",
+    "./src/components/ResearchAppBar.tsx",
+    "./src/app/usePreferredTheme.tsx",
   ],
   "exclude": [
     "jest.config.ts",

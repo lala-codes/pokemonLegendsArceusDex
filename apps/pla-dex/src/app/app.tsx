@@ -1,29 +1,23 @@
+import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useMemo } from 'react';
-import Card from '../components/Card';
-import data from './data';
+import ThemeProvider from '@mui/material/styles/ThemeProvider';
+import ResearchAppBar from '../components/ResearchAppBar';
+import usePreferredTheme from './usePreferredTheme';
+import ResearchList from '../components/ResearchList';
+import ResearchTaskCard from '../components/ResearchTaskCard';
+import { Grid } from '@mui/material';
 
 export function App() {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const theme = useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode: prefersDarkMode ? 'dark' : 'light',
-        },
-        spacing: 4,
-      }),
-    [prefersDarkMode]
-  );
+  const theme = usePreferredTheme();
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {data.map(({ dex, name, researchTasks }) => (
-        <Card key={dex} dex={dex} name={name} researchTasks={researchTasks} />
-      ))}
+      <ResearchAppBar />
+      <Container disableGutters sx={{ mb: 8 }}>
+        <ResearchList />
+      </Container>
+      <ResearchTaskCard />
     </ThemeProvider>
   );
 }

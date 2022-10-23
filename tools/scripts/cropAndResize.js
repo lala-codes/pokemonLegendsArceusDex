@@ -256,7 +256,10 @@ async function cropImage(tileNumber) {
   }
   const tile = _.padStart(`${tileNumber}`, 3, '0');
   const img = path.resolve(__dirname, `../../apps/pla-dex/src/assets/normal-raw/tile${tile}.png`);
-  const newImg = path.resolve(__dirname, `../../apps/pla-dex/src/assets/normal/${pkmnTileList[tileNumber]}.png`);
+
+  const [dex, ...rest] = pkmnTileList[tileNumber].split('-');
+  const newName = rest.join('-');
+  const newImg = path.resolve(__dirname, `../../apps/pla-dex/src/assets/normal/${newName}.png`);
 
   try {
     const distance = 18;
