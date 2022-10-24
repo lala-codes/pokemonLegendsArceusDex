@@ -2,17 +2,23 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import WbSunnyIcon from '@mui/icons-material/WbSunny';
-import GrassIcon from '@mui/icons-material/Grass';
-import AcUnitIcon from '@mui/icons-material/AcUnit';
-import TerrainIcon from '@mui/icons-material/Terrain';
-import ThunderstormIcon from '@mui/icons-material/Thunderstorm';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
-import { Radio, RadioGroup } from '@mui/material';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 import { clearRegionFilter, setRegionFilter } from '../slices/regionSlice';
 import { RegionName } from '../types';
+import AlabasterIcelands from './icons/AlabasterIcelands';
+import CoronetHighlands from './icons/CoronetHighlands';
+import CobaltCoastlands from './icons/CobaltCoastlands';
+import CrimsonMirelands from './icons/CrimsonMirelands';
+import ObsidianField from './icons/ObsidianField';
+import ObsidianFieldFilled from './icons/ObsidianFieldFilled';
+import CrimsonMirelandsFilled from './icons/CrimsonMirelandsFilled';
+import CobaltCoastlandsFilled from './icons/CobaltCoastlandsFilled';
+import CoronetHighlandsFilled from './icons/CoronetHighlandsFilled';
+import AlabasterIcelandsFilled from './icons/AlabasterIcelandsFilled';
 
 export default function ResearchAppBar() {
   const dispatch = useDispatch();
@@ -45,28 +51,28 @@ export default function ResearchAppBar() {
               value="all"
             />
             <Radio
-              icon={<GrassIcon />}
-              checkedIcon={<GrassIcon />}
+              icon={<ObsidianField />}
+              checkedIcon={<ObsidianFieldFilled />}
               value="field"
             />
             <Radio
-              icon={<ThunderstormIcon />}
-              checkedIcon={<ThunderstormIcon />}
+              icon={<CrimsonMirelands />}
+              checkedIcon={<CrimsonMirelandsFilled />}
               value="crimson"
             />
             <Radio
-              icon={<WbSunnyIcon />}
-              checkedIcon={<WbSunnyIcon />}
+              icon={<CobaltCoastlands />}
+              checkedIcon={<CobaltCoastlandsFilled />}
               value="coast"
             />
             <Radio
-              icon={<TerrainIcon />}
-              checkedIcon={<TerrainIcon />}
+              icon={<CoronetHighlands />}
+              checkedIcon={<CoronetHighlandsFilled />}
               value="highland"
             />
             <Radio
-              icon={<AcUnitIcon />}
-              checkedIcon={<AcUnitIcon />}
+              icon={<AlabasterIcelands />}
+              checkedIcon={<AlabasterIcelandsFilled />}
               value="ice"
             />
           </RadioGroup>
