@@ -13,6 +13,7 @@ import {
 
 import monsterReducer from '../slices/monsterSlice';
 import researchTaskReducer from '../slices/researchTaskSlice';
+import regionReducer from '../slices/regionSlice';
 
 const persistConfig = {
   key: 'root',
@@ -23,6 +24,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   monster: monsterReducer,
   researchTask: researchTaskReducer,
+  region: regionReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

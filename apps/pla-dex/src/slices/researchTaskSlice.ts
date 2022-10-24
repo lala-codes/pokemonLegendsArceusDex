@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import data from '../data';
 import { Dex, ResearchTasks } from '../types';
+import data from './data.json';
 
 interface ResearchTasksRecord extends ResearchTasks {
   progress: number[];
@@ -12,7 +12,7 @@ export interface RecordState {
 }
 
 const initialState: RecordState = {
-  records: data.reduce(
+  records: data.monsters.reduce(
     (prev, current) => ({
       [current.dex]: {
         dex: current.dex,

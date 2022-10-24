@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import data from '../data';
 import { Dex, Monster } from '../types';
+import data from './data.json';
 
 export interface MonsterState {
   selected: Dex;
@@ -10,7 +10,7 @@ export interface MonsterState {
 
 const initialState: MonsterState = {
   selected: 0,
-  records: data.reduce(
+  records: data.monsters.reduce(
     (prev, current) => ({
       [current.dex]: {
         dex: current.dex,

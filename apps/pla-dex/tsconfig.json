@@ -4,6 +4,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
     "allowJs": true,
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
