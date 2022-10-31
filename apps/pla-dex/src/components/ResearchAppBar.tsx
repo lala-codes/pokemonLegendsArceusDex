@@ -2,7 +2,6 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,11 +13,8 @@ import CoronetHighlands from './icons/CoronetHighlands';
 import CobaltCoastlands from './icons/CobaltCoastlands';
 import CrimsonMirelands from './icons/CrimsonMirelands';
 import ObsidianField from './icons/ObsidianField';
-import ObsidianFieldFilled from './icons/ObsidianFieldFilled';
-import CrimsonMirelandsFilled from './icons/CrimsonMirelandsFilled';
-import CobaltCoastlandsFilled from './icons/CobaltCoastlandsFilled';
-import CoronetHighlandsFilled from './icons/CoronetHighlandsFilled';
-import AlabasterIcelandsFilled from './icons/AlabasterIcelandsFilled';
+import Pokeball from './icons/Pokeball';
+import RegionIcon from './icons/RegionIcon';
 
 export default function ResearchAppBar() {
   const dispatch = useDispatch();
@@ -46,33 +42,33 @@ export default function ResearchAppBar() {
             }}
           >
             <Radio
-              icon={<CatchingPokemonIcon />}
-              checkedIcon={<CatchingPokemonIcon />}
+              icon={<RegionIcon />}
+              checkedIcon={<RegionIcon />}
               value="all"
             />
             <Radio
               icon={<ObsidianField />}
-              checkedIcon={<ObsidianFieldFilled />}
+              checkedIcon={<ObsidianField />}
               value="field"
             />
             <Radio
               icon={<CrimsonMirelands />}
-              checkedIcon={<CrimsonMirelandsFilled />}
+              checkedIcon={<CrimsonMirelands />}
               value="crimson"
             />
             <Radio
               icon={<CobaltCoastlands />}
-              checkedIcon={<CobaltCoastlandsFilled />}
+              checkedIcon={<CobaltCoastlands />}
               value="coast"
             />
             <Radio
               icon={<CoronetHighlands />}
-              checkedIcon={<CoronetHighlandsFilled />}
+              checkedIcon={<CoronetHighlands />}
               value="highland"
             />
             <Radio
               icon={<AlabasterIcelands />}
-              checkedIcon={<AlabasterIcelandsFilled />}
+              checkedIcon={<AlabasterIcelands />}
               value="ice"
             />
           </RadioGroup>
