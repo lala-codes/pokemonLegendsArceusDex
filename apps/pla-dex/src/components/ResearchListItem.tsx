@@ -11,6 +11,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { select } from '../slices/monsterSlice';
 import { RootState } from '../app/store';
 import useTaskProgress from './useTaskProgress';
+import useResearchLevel from './useResearchLevel';
+import PerfectIcon from './icons/PerfectIcon';
+import CompleteIcon from './icons/CompleteIcon';
 
 type ResearchListItemProps = Pick<Monster, 'dex'>;
 
@@ -20,6 +23,7 @@ export default function ResearchListItem({ dex }: ResearchListItemProps) {
     (state: RootState) => state.monster.records[dex].name
   );
   const { totalTaskProgress, totalTasks } = useTaskProgress(dex);
+  const { status } = useResearchLevel(dex);
 
   return (
     <ListItem disablePadding>
@@ -37,6 +41,8 @@ export default function ResearchListItem({ dex }: ResearchListItemProps) {
           </Avatar>
         </ListItemAvatar>
         <ListItemText primary={name} />
+        {status === 'perfect' && <PerfectIcon />}
+        {status === 'complete' && <CompleteIcon />}
         <Box sx={{ position: 'absolute', bottom: 0, left: 0, width: '100%' }}>
           <LinearProgress
             value={(totalTaskProgress / totalTasks) * 100}

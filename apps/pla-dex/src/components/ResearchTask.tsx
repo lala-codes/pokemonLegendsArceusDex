@@ -4,6 +4,8 @@ import Typography from '@mui/material/Typography';
 import { useCallback } from 'react';
 import { capitalize } from '@mui/material';
 import { Task } from '../types';
+import BoostIcon from './icons/BoostIcon';
+import useResearchLevel from './useResearchLevel';
 
 function ResearchTaskItem({ value, children, ...props }: IconContainerProps) {
   return (
@@ -33,6 +35,7 @@ export default function ResearchTask({
   task: name,
   requirements: values,
   researchValue,
+  isDoubled = false,
   onChange = () => null,
 }: ResearchTaskProps) {
   const ConnectedResearchTaskItem = useCallback(
@@ -44,7 +47,10 @@ export default function ResearchTask({
 
   return (
     <Box>
-      <Typography>{capitalize(name)}</Typography>
+      <Typography>
+        {isDoubled && <BoostIcon sx={{ mr: 2, verticalAlign: 'middle' }} />}
+        {capitalize(name)}
+      </Typography>
       <Rating
         value={values.indexOf(researchValue) + 1}
         max={values.length}

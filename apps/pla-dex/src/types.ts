@@ -14,6 +14,7 @@ interface WithDex {
 export interface Task {
   id?: number;
   task: string;
+  isDoubled?: boolean;
   requirements: number[];
 }
 

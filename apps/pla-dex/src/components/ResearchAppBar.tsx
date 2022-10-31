@@ -13,7 +13,6 @@ import CoronetHighlands from './icons/CoronetHighlands';
 import CobaltCoastlands from './icons/CobaltCoastlands';
 import CrimsonMirelands from './icons/CrimsonMirelands';
 import ObsidianField from './icons/ObsidianField';
-import Pokeball from './icons/Pokeball';
 import RegionIcon from './icons/RegionIcon';
 
 export default function ResearchAppBar() {
