@@ -2,13 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { Region, RegionName } from '../types';
 import data from './data.json';
+import union from 'lodash/union';
+import without from 'lodash/without';
 
 export interface RegionState {
-  filter?: RegionName;
+  filters?: RegionName[];
   regions: Record<string, Region>;
 }
 
 const initialState: RegionState = {
+  filters: [],
   regions: data.regions.reduce(
     (prev, current) => ({
       [current.name]: {
@@ -26,16 +29,20 @@ export const regionSlice = createSlice({
   name: 'region',
   initialState,
   reducers: {
-    setRegionFilter: (state, action: PayloadAction<RegionName>) => {
-      state.filter = action.payload;
+    addRegionFilter: (state, action: PayloadAction<RegionName>) => {
+      state.filters = union(state.filters, [action.payload]);
+    },
+    removeRegionFilter: (state, action: PayloadAction<RegionName>) => {
+      state.filters = without(state.filters, action.payload);
     },
     clearRegionFilter: (state) => {
-      delete state.filter;
+      state.filters = [];
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setRegionFilter, clearRegionFilter } = regionSlice.actions;
+export const { addRegionFilter, clearRegionFilter, removeRegionFilter } =
+  regionSlice.actions;
 
 export default regionSlice.reducer;

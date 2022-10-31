@@ -13,6 +13,8 @@
     "./src/components/ResearchList.tsx",
     "./src/components/ResearchAppBar.tsx",
     "./src/app/usePreferredTheme.tsx",
+    "./src/components/RegionFilter.tsx",
+    "./src/components/RegionFilterCheckbox.tsx",
   ],
   "exclude": [
     "jest.config.ts",

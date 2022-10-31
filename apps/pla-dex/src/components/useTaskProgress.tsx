@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 import { useMemo } from 'react';
+import calculateTaskProgress from '../utils/calculateTaskProgress';
 
 export default function useTaskProgress(dex: number): {
   totalTaskProgress: number;
@@ -13,27 +14,8 @@ export default function useTaskProgress(dex: number): {
   const progress = useSelector(
     (state: RootState) => state?.researchTask?.records?.[dex]?.progress || []
   );
-  const totalTasks = useMemo(
-    () =>
-      tasks.reduce(
-        (prev, currentTask) => prev + currentTask?.requirements?.length,
-        0
-      ),
-    [tasks]
+  return useMemo(
+    () => calculateTaskProgress({ dex, tasks, progress }),
+    [tasks, progress, dex]
   );
-  const totalTaskProgress = useMemo(
-    () =>
-      progress.reduce(
-        (prev, currentProgress, index) =>
-          prev + tasks?.[index]?.requirements?.indexOf(currentProgress) + 1,
-        0
-      ),
-    [progress, tasks]
-  );
-
-  if (!dex) {
-    return { totalTaskProgress: 0, totalTasks: 0 };
-  }
-
-  return { totalTaskProgress, totalTasks };
 }

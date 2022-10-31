@@ -22,6 +22,8 @@ export interface Monster extends WithDex {
   name: string;
 }
 
+export type ResearchStatus = 'incomplete' | 'complete' | 'perfect';
+
 export interface ResearchTasks extends WithDex {
   researchTasks: Task[];
 }
