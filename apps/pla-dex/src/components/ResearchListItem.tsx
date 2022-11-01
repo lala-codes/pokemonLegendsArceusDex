@@ -14,10 +14,11 @@ import useTaskProgress from './useTaskProgress';
 import useResearchLevel from './useResearchLevel';
 import PerfectIcon from './icons/PerfectIcon';
 import CompleteIcon from './icons/CompleteIcon';
+import React from 'react';
 
 type ResearchListItemProps = Pick<Monster, 'dex'>;
 
-export default function ResearchListItem({ dex }: ResearchListItemProps) {
+function ResearchListItem({ dex }: ResearchListItemProps) {
   const dispatch = useDispatch();
   const name = useSelector(
     (state: RootState) => state.monster.records[dex].name
@@ -54,3 +55,5 @@ export default function ResearchListItem({ dex }: ResearchListItemProps) {
     </ListItem>
   );
 }
+
+export default React.memo(ResearchListItem);

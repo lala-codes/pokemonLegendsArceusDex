@@ -35,7 +35,6 @@ export default function ResearchAppBar() {
         open={open}
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
-        PaperProps={{ sx: { borderRadius: 3, padding: 4 } }}
       >
         <ResearchLevelFilter />
         <RegionFilter />
