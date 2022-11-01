@@ -31,10 +31,11 @@ export default function ResearchAppBar() {
         <Toolbar />
       </Box>
       <SwipeableDrawer
-        anchor="bottom"
+        anchor="right"
         open={open}
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
+        PaperProps={{ sx: { p: 4 } }}
       >
         <ResearchLevelFilter />
         <RegionFilter />

@@ -7,13 +7,9 @@ import { RegionName } from '../types';
 
 interface RegionFilterCheckboxProps {
   name: RegionName;
-  icon: React.ReactNode;
 }
 
-export function RegionFilterCheckbox({
-  name,
-  icon,
-}: RegionFilterCheckboxProps) {
+export function RegionFilterCheckbox({ name }: RegionFilterCheckboxProps) {
   const dispatch = useDispatch();
   const regionFilters = useSelector((state: RootState) => state.region.filters);
   const handleChange = useCallback(
@@ -27,8 +23,6 @@ export function RegionFilterCheckbox({
 
   return (
     <Checkbox
-      icon={icon}
-      checkedIcon={icon}
       value={name}
       onChange={handleChange}
       checked={!!regionFilters?.includes?.(name)}

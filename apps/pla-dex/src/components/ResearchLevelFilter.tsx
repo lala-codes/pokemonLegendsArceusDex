@@ -1,9 +1,6 @@
 import FormGroup from '@mui/material/FormGroup';
-import ReserachLevelFilterCheckbox from './ReserachLevelFilterCheckbox';
-import PokeballCaught from './icons/PokeballCaught';
-import CompleteIcon from './icons/CompleteIcon';
-import PerfectIcon from './icons/PerfectIcon';
 import { FormControl, FormControlLabel, FormLabel } from '@mui/material';
+import ReserachLevelFilterCheckbox from './ResearchLevelFilterCheckbox';
 
 export default function ResearchLevelFilter() {
   return (
@@ -12,30 +9,15 @@ export default function ResearchLevelFilter() {
       <FormGroup>
         <FormControlLabel
           label="Incomplete"
-          control={
-            <ReserachLevelFilterCheckbox
-              status="incomplete"
-              icon={<PokeballCaught />}
-            />
-          }
+          control={<ReserachLevelFilterCheckbox status="incomplete" />}
         />
         <FormControlLabel
           label="Complete"
-          control={
-            <ReserachLevelFilterCheckbox
-              status="complete"
-              icon={<CompleteIcon />}
-            />
-          }
+          control={<ReserachLevelFilterCheckbox status="complete" />}
         />
         <FormControlLabel
           label="Perfect"
-          control={
-            <ReserachLevelFilterCheckbox
-              status="perfect"
-              icon={<PerfectIcon />}
-            />
-          }
+          control={<ReserachLevelFilterCheckbox status="perfect" />}
         />
       </FormGroup>
     </FormControl>

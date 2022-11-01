@@ -10,12 +10,10 @@ import { ResearchStatus } from '../types';
 
 interface ResearchLevelFilterCheckboxProps {
   status: ResearchStatus;
-  icon: React.ReactNode;
 }
 
 export default function ResearchLevelFilterCheckbox({
   status,
-  icon,
 }: ResearchLevelFilterCheckboxProps) {
   const dispatch = useDispatch();
   const filters = useSelector((state: RootState) => state.researchTask.filters);
@@ -32,8 +30,6 @@ export default function ResearchLevelFilterCheckbox({
 
   return (
     <Checkbox
-      icon={icon}
-      checkedIcon={icon}
       value={status}
       onChange={handleChange}
       checked={!!filters?.includes?.(status)}

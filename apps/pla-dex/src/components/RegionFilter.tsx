@@ -1,9 +1,4 @@
 import FormGroup from '@mui/material/FormGroup';
-import AlabasterIcelands from './icons/AlabasterIcelands';
-import CoronetHighlands from './icons/CoronetHighlands';
-import CobaltCoastlands from './icons/CobaltCoastlands';
-import CrimsonMirelands from './icons/CrimsonMirelands';
-import ObsidianField from './icons/ObsidianField';
 import { RegionFilterCheckbox } from './RegionFilterCheckbox';
 import { FormControl, FormControlLabel, FormLabel } from '@mui/material';
 
@@ -13,34 +8,24 @@ export default function RegionFilter() {
       <FormLabel component="legend">Region Filter</FormLabel>
       <FormGroup>
         <FormControlLabel
-          label="Obsidian Field"
-          control={
-            <RegionFilterCheckbox name="field" icon={<ObsidianField />} />
-          }
+          label="Obsidian Fields"
+          control={<RegionFilterCheckbox name="field" />}
         />
         <FormControlLabel
           label="Crimson Mirelands"
-          control={
-            <RegionFilterCheckbox name="crimson" icon={<CrimsonMirelands />} />
-          }
+          control={<RegionFilterCheckbox name="crimson" />}
         />
         <FormControlLabel
           label="Cobalt Coastlands"
-          control={
-            <RegionFilterCheckbox name="coast" icon={<CobaltCoastlands />} />
-          }
+          control={<RegionFilterCheckbox name="coast" />}
         />
         <FormControlLabel
           label="Coronet Highlands"
-          control={
-            <RegionFilterCheckbox name="highland" icon={<CoronetHighlands />} />
-          }
+          control={<RegionFilterCheckbox name="highland" />}
         />
         <FormControlLabel
           label="Alabaster Icelands"
-          control={
-            <RegionFilterCheckbox name="ice" icon={<AlabasterIcelands />} />
-          }
+          control={<RegionFilterCheckbox name="ice" />}
         />
       </FormGroup>
     </FormControl>

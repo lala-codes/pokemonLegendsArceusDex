@@ -5,6 +5,7 @@ import {
   Typography,
   Box,
   Divider,
+  IconButton,
 } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../app/store';
@@ -14,6 +15,7 @@ import ResearchTask from './ResearchTask';
 import useResearchLevel from './useResearchLevel';
 import PerfectIcon from './icons/PerfectIcon';
 import CompleteIcon from './icons/CompleteIcon';
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function ResearchTaskCard() {
   const dispatch = useDispatch();
@@ -31,8 +33,27 @@ export default function ResearchTaskCard() {
   const { researchLevel, status } = useResearchLevel(selected);
 
   return (
-    <Dialog open={!!selected} onClose={() => dispatch(deselect())}>
-      <DialogTitle>{name}</DialogTitle>
+    <Dialog
+      open={!!selected}
+      onClose={() => dispatch(deselect())}
+      scroll="body"
+    >
+      <DialogTitle
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
+        {name}
+        <IconButton
+          edge="end"
+          sx={{ mt: -4, mr: -5 }}
+          onClick={() => dispatch(deselect())}
+        >
+          <CloseIcon />
+        </IconButton>
+      </DialogTitle>
       <DialogContent>
         {researchTasks?.map(
           ({ task, isDoubled, requirements }, index: number) => (
