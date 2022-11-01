@@ -9,33 +9,38 @@ export default function calculateResearchLevel({
   dex,
   tasks,
   progress,
-}: CalculateResearchLevelOptions) {
+}: CalculateResearchLevelOptions): {
+  researchLevel: number;
+  status: ResearchStatus;
+} {
+  if (!dex) {
+    return {
+      researchLevel: 0,
+      status: 'incomplete',
+    };
+  }
+
   const { totalTaskProgress, totalTasks } = calculateTaskProgress({
     dex,
     tasks,
     progress,
   });
 
-  const researchLevel =
-    (dex &&
-      progress?.reduce(
-        (prev, currentProgress, index) =>
-          prev +
-          (tasks?.[index]?.isDoubled ? 2 : 1) *
-            (tasks?.[index]?.requirements?.indexOf(currentProgress) ?? -1 + 1),
-        0
-      )) ||
-    0;
+  const researchLevel = progress?.reduce((prev, currentProgress, index) => {
+    const multiplier = tasks?.[index]?.isDoubled ? 2 : 1;
+    const numTasksComplete =
+      (tasks?.[index]?.requirements?.indexOf(currentProgress) || 0) + 1;
+    console.log('num complete', numTasksComplete);
+    return prev + numTasksComplete * multiplier;
+  }, 0);
 
   let status: ResearchStatus = 'incomplete';
   if (totalTaskProgress === totalTasks) {
     status = 'perfect';
-  } else if (researchLevel >= 10) {
-    status = 'complete';
   }
 
   return {
-    researchLevel,
+    researchLevel: researchLevel || 0,
     status,
   };
 }
