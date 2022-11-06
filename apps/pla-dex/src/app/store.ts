@@ -11,7 +11,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-import monsterReducer from '../slices/monsterSlice';
+import monsterReducer from '../slices/monSlice';
 import researchTaskReducer from '../slices/researchTaskSlice';
 import regionReducer from '../slices/regionSlice';
 

@@ -6,8 +6,8 @@ import Button from '@mui/material/Button';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import { useState } from 'react';
-import RegionFilter from './RegionFilter';
-import ResearchLevelFilter from './ResearchLevelFilter';
+// import RegionFilter from './RegionFilter';
+// import ResearchLevelFilter from './ResearchLevelFilter';
 
 export default function ResearchAppBar() {
   const [open, setOpen] = useState(false);
@@ -37,8 +37,8 @@ export default function ResearchAppBar() {
         onOpen={() => setOpen(true)}
         PaperProps={{ sx: { p: 4 } }}
       >
-        <ResearchLevelFilter />
-        <RegionFilter />
+        {/* <ResearchLevelFilter /> */}
+        {/* <RegionFilter /> */}
       </SwipeableDrawer>
     </>
   );

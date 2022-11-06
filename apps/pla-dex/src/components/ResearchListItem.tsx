@@ -5,26 +5,32 @@ import LinearProgress from '@mui/material/LinearProgress';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
-import { Monster } from '../types';
+import { Mon } from '../types';
 import { ListItemButton } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
-import { select } from '../slices/monsterSlice';
+import { select } from '../slices/monSlice';
 import { RootState } from '../app/store';
-import useTaskProgress from './useTaskProgress';
-import useResearchLevel from './useResearchLevel';
 import PerfectIcon from './icons/PerfectIcon';
 import CompleteIcon from './icons/CompleteIcon';
 import React from 'react';
 
-type ResearchListItemProps = Pick<Monster, 'dex'>;
+type ResearchListItemProps = Pick<Mon, 'dex'>;
 
 function ResearchListItem({ dex }: ResearchListItemProps) {
   const dispatch = useDispatch();
   const name = useSelector(
     (state: RootState) => state.monster.records[dex].name
   );
-  const { totalTaskProgress, totalTasks } = useTaskProgress(dex);
-  const { status } = useResearchLevel(dex);
+  // (totalTaskProgress / totalTasks) * 100
+  const researchLevel = useSelector(
+    (state: RootState) =>
+      (state.researchTask.records[dex].totalProgress /
+        state.researchTask.records[dex].totalTasks) *
+      100
+  );
+  const status = useSelector(
+    (state: RootState) => state.researchTask.records[dex].status
+  );
 
   return (
     <ListItem disablePadding>
@@ -46,7 +52,7 @@ function ResearchListItem({ dex }: ResearchListItemProps) {
         {status === 'complete' && <CompleteIcon />}
         <Box sx={{ position: 'absolute', bottom: 0, left: 0, width: '100%' }}>
           <LinearProgress
-            value={(totalTaskProgress / totalTasks) * 100}
+            value={researchLevel}
             variant="determinate"
             color="success"
           />

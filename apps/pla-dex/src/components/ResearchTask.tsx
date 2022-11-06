@@ -3,9 +3,8 @@ import Rating, { IconContainerProps } from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import { useCallback } from 'react';
 import { capitalize } from '@mui/material';
-import { Task } from '../types';
+import { BaseTask } from '../types';
 import BoostIcon from './icons/BoostIcon';
-import useResearchLevel from './useResearchLevel';
 
 function ResearchTaskItem({ value, children, ...props }: IconContainerProps) {
   return (
@@ -26,13 +25,13 @@ function ResearchTaskItem({ value, children, ...props }: IconContainerProps) {
   );
 }
 
-export interface ResearchTaskProps extends Task {
+export interface ResearchTaskProps extends BaseTask {
   researchValue: number;
   onChange?: (value: number) => void;
 }
 
 export default function ResearchTask({
-  task: name,
+  type: name,
   requirements: values,
   researchValue,
   isDoubled = false,

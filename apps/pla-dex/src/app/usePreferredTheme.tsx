@@ -1,10 +1,10 @@
+import { useMemo } from 'react';
 import { createTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useMemo } from 'react';
 
 export default function usePreferredTheme() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const theme = useMemo(
+  return useMemo(
     () =>
       createTheme({
         palette: {
@@ -26,5 +26,4 @@ export default function usePreferredTheme() {
       }),
     [prefersDarkMode]
   );
-  return theme;
 }

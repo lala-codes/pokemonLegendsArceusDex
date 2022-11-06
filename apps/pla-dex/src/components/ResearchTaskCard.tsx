@@ -1,3 +1,4 @@
+import CloseIcon from '@mui/icons-material/Close';
 import {
   Dialog,
   DialogContent,
@@ -9,13 +10,11 @@ import {
 } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../app/store';
-import { deselect } from '../slices/monsterSlice';
+import { deselect } from '../slices/monSlice';
 import { setTaskValue } from '../slices/researchTaskSlice';
 import ResearchTask from './ResearchTask';
-import useResearchLevel from './useResearchLevel';
 import PerfectIcon from './icons/PerfectIcon';
 import CompleteIcon from './icons/CompleteIcon';
-import CloseIcon from '@mui/icons-material/Close';
 
 export default function ResearchTaskCard() {
   const dispatch = useDispatch();
@@ -24,13 +23,17 @@ export default function ResearchTaskCard() {
     (state: RootState) => state.monster.records?.[selected]?.name
   );
   const researchTasks = useSelector(
-    (state: RootState) => state.researchTask.records?.[selected]?.researchTasks
+    (state: RootState) => state.researchTask.records?.[selected]?.tasks
   );
   const tasksProgress = useSelector(
     (state: RootState) => state.researchTask.records?.[selected]?.progress
   );
-
-  const { researchLevel, status } = useResearchLevel(selected);
+  const status = useSelector(
+    (state: RootState) => state.researchTask.records?.[selected]?.status
+  );
+  const researchLevel = useSelector(
+    (state: RootState) => state.researchTask.records?.[selected]?.level
+  );
 
   return (
     <Dialog
@@ -56,10 +59,10 @@ export default function ResearchTaskCard() {
       </DialogTitle>
       <DialogContent>
         {researchTasks?.map(
-          ({ task, isDoubled, requirements }, index: number) => (
+          ({ type, isDoubled, requirements }, index: number) => (
             <ResearchTask
-              key={task}
-              task={task}
+              key={type}
+              type={type}
               requirements={requirements}
               isDoubled={isDoubled}
               researchValue={tasksProgress[index]}
