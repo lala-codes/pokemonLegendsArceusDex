@@ -1,15 +1,14 @@
 export type Dex = number;
 
+export type StringDex = string;
+
+export type MoveName = string;
+
 export type RegionName = 'field' | 'crimson' | 'coast' | 'highland' | 'ice';
 
 export interface Region {
-  name: RegionName;
-  displayName: string;
-  mons: Dex[];
-}
-
-interface WithDex {
-  dex: Dex;
+  name: Readonly<RegionName>;
+  displayName: Readonly<string>;
 }
 
 type TaskType =
@@ -56,37 +55,31 @@ type TaskType =
   | 'defeat_fire'
   | 'defeat';
 
-export interface BaseTask {
-  type: TaskType;
-  isDoubled: boolean;
-  requirements: number[];
+export interface StandardTask {
+  type: Readonly<TaskType>;
+  isDoubled: Readonly<boolean>;
+  requirements: Readonly<number[]>;
+  progress: number;
 }
 
-export interface RequestTask extends BaseTask {
-  type: 'request';
-  request: string;
+export interface RequestTask extends StandardTask {
+  type: Readonly<'request'>;
+  request: Readonly<string>;
 }
 
-export interface UseMoveTask extends BaseTask {
-  type: 'use_move';
-  move: string;
+export interface UseMoveTask extends StandardTask {
+  type: Readonly<'use_move'>;
+  move: Readonly<MoveName>;
 }
 
-export type Task = RequestTask | UseMoveTask | BaseTask;
-
-export interface Mon extends WithDex {
-  name: string;
-}
+export type Task = RequestTask | UseMoveTask | StandardTask;
 
 export type ResearchStatus = 'incomplete' | 'complete' | 'perfect';
 
-export interface ResearchTasks extends WithDex {
+export interface Mon {
+  id: StringDex;
+  dex: Readonly<Dex>;
+  name: Readonly<string>;
+  regions: Readonly<RegionName[]>;
   tasks: Task[];
-}
-
-export interface MonWithResearch extends Mon, ResearchTasks {}
-
-export interface Data {
-  regions: Region[];
-  monsters: MonWithResearch[];
 }

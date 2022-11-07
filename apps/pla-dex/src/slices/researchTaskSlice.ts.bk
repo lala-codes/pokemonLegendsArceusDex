@@ -2,7 +2,7 @@ import last from 'lodash/last';
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import data from '../data/researchTasks.json';
-import { BaseTask, Dex, ResearchStatus, ResearchTasks } from '../types';
+import { StandardTask, Dex, ResearchStatus, ResearchTasks } from '../types';
 
 interface ResearchTasksRecord extends ResearchTasks {
   progress: number[];
@@ -25,7 +25,7 @@ const initialState: RecordState = {
         status: 'incomplete',
         progress: new Array(tasks.length).fill(0),
         totalProgress: 0,
-        totalTasks: (tasks as BaseTask[]).reduce(
+        totalTasks: (tasks as StandardTask[]).reduce(
           (prev, currentTask) => prev + currentTask.requirements.length,
           0
         ),

@@ -2,19 +2,16 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "types": ["node"]
+    "types": ["node"],
   },
   "files": [
     "../../node_modules/@nrwl/react/typings/cssmodule.d.ts",
     "../../node_modules/@nrwl/react/typings/image.d.ts",
-    "./src/components/ResearchTask.tsx",
-    "./src/components/useTaskProgress.tsx",
+    "src/components/ResearchTaskRow.tsx",
     "./src/components/ResearchListItem.tsx",
     "./src/components/ResearchList.tsx",
     "./src/components/ResearchAppBar.tsx",
     "./src/app/usePreferredTheme.tsx",
-    "./src/components/RegionFilter.tsx",
-    "./src/components/RegionFilterCheckbox.tsx",
   ],
   "exclude": [
     "jest.config.ts",
@@ -27,5 +24,5 @@
     "**/*.spec.jsx",
     "**/*.test.jsx"
   ],
-  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"]
+  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "src/slices/researchTaskSlice.ts.bk"]
 }

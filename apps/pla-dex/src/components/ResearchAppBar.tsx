@@ -37,8 +37,7 @@ export default function ResearchAppBar() {
         onOpen={() => setOpen(true)}
         PaperProps={{ sx: { p: 4 } }}
       >
-        {/* <ResearchLevelFilter /> */}
-        {/* <RegionFilter /> */}
+        Placeholder
       </SwipeableDrawer>
     </>
   );

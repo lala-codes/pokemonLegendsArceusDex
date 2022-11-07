@@ -12,18 +12,16 @@ import {
 } from 'redux-persist';
 
 import monsterReducer from '../slices/monSlice';
-import researchTaskReducer from '../slices/researchTaskSlice';
 import regionReducer from '../slices/regionSlice';
 
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['monster'],
+  blacklist: ['region'],
 };
 
 const rootReducer = combineReducers({
   monster: monsterReducer,
-  researchTask: researchTaskReducer,
   region: regionReducer,
 });
 

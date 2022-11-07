@@ -12,7 +12,6 @@ const initialState: RegionState = {
       [name as RegionName]: {
         name: name as RegionName,
         displayName: data.name,
-        mons: data.mons,
       },
       ...prev,
     }),

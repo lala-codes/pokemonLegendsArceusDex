@@ -1,117 +1,32 @@
-import CloseIcon from '@mui/icons-material/Close';
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  Typography,
-  Box,
-  Divider,
-  IconButton,
-} from '@mui/material';
-import { useSelector, useDispatch } from 'react-redux';
+import { Drawer } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../app/store';
-import { deselect } from '../slices/monSlice';
-import { setTaskValue } from '../slices/researchTaskSlice';
-import ResearchTask from './ResearchTask';
-import PerfectIcon from './icons/PerfectIcon';
-import CompleteIcon from './icons/CompleteIcon';
+import { viewMonList } from '../slices/monSlice';
+import ResearchTaskContent from './ResearchTaskContent';
 
 export default function ResearchTaskCard() {
   const dispatch = useDispatch();
-  const selected = useSelector((state: RootState) => state.monster.selected);
-  const name = useSelector(
-    (state: RootState) => state.monster.records?.[selected]?.name
-  );
-  const researchTasks = useSelector(
-    (state: RootState) => state.researchTask.records?.[selected]?.tasks
-  );
-  const tasksProgress = useSelector(
-    (state: RootState) => state.researchTask.records?.[selected]?.progress
-  );
-  const status = useSelector(
-    (state: RootState) => state.researchTask.records?.[selected]?.status
-  );
-  const researchLevel = useSelector(
-    (state: RootState) => state.researchTask.records?.[selected]?.level
-  );
+  const viewId = useSelector((state: RootState) => state.monster.viewId);
+  const [open, setOpen] = useState<boolean>(!viewId);
+
+  useEffect(() => {
+    if (viewId) {
+      setOpen(true);
+    }
+  }, [viewId]);
 
   return (
-    <Dialog
-      open={!!selected}
-      onClose={() => dispatch(deselect())}
-      scroll="body"
+    <Drawer
+      open={open}
+      dir="left"
+      onClose={() => setOpen(false)}
+      PaperProps={{ sx: { width: '100%', p: 4 } }}
+      SlideProps={{ onExited: () => dispatch(viewMonList()) }}
     >
-      <DialogTitle
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
-        {name}
-        <IconButton
-          edge="end"
-          sx={{ mt: -4, mr: -5 }}
-          onClick={() => dispatch(deselect())}
-        >
-          <CloseIcon />
-        </IconButton>
-      </DialogTitle>
-      <DialogContent>
-        {researchTasks?.map(
-          ({ type, isDoubled, requirements }, index: number) => (
-            <ResearchTask
-              key={type}
-              type={type}
-              requirements={requirements}
-              isDoubled={isDoubled}
-              researchValue={tasksProgress[index]}
-              onChange={(value) =>
-                dispatch(setTaskValue({ dex: selected, task: index, value }))
-              }
-            />
-          )
-        )}
-        <Divider sx={{ my: 4 }} />
-        <Box display="flex" alignItems="center" justifyContent="space-between">
-          <Typography component="span">Research Level</Typography>
-          <Typography component="span" display="flex">
-            {status === 'perfect' && (
-              <Typography sx={{ display: 'flex', alignItems: 'center' }}>
-                <PerfectIcon sx={{ mr: 2 }} /> Perfect!
-              </Typography>
-            )}
-            {status === 'complete' && (
-              <Typography
-                component="span"
-                sx={{ display: 'flex', alignItems: 'center' }}
-              >
-                <CompleteIcon sx={{ mr: 2 }} /> Complete!
-              </Typography>
-            )}
-            <Typography
-              ml={2}
-              component="span"
-              variant="h5"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              {Math.min(10, researchLevel)}
-              {researchLevel > 10 && (
-                <Typography
-                  component="span"
-                  color="#ffee11"
-                  display="inline-block"
-                  ml={1}
-                >
-                  ({researchLevel})
-                </Typography>
-              )}
-            </Typography>
-          </Typography>
-        </Box>
-      </DialogContent>
-    </Dialog>
+      {viewId && (
+        <ResearchTaskContent dex={viewId} onClose={() => setOpen(false)} />
+      )}
+    </Drawer>
   );
 }
