@@ -8,7 +8,7 @@ import ResearchTaskContent from './ResearchTaskContent';
 export default function ResearchTaskCard() {
   const dispatch = useDispatch();
   const viewId = useSelector((state: RootState) => state.monster.viewId);
-  const [open, setOpen] = useState<boolean>(!viewId);
+  const [open, setOpen] = useState<boolean>(!!viewId);
 
   useEffect(() => {
     if (viewId) {
